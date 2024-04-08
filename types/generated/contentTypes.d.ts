@@ -362,28 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiGiftGift extends Schema.CollectionType {
-  collectionName: 'gifts';
-  info: {
-    singularName: 'gift';
-    pluralName: 'gifts';
-    displayName: 'gifts';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::gift.gift', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::gift.gift', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiVacancyVacancy extends Schema.CollectionType {
   collectionName: 'vacancies';
   info: {
@@ -396,8 +374,10 @@ export interface ApiVacancyVacancy extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    position: Attribute.String;
+    title: Attribute.String;
     description: Attribute.String;
+    grade: Attribute.String;
+    subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -852,7 +832,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::gift.gift': ApiGiftGift;
       'api::vacancy.vacancy': ApiVacancyVacancy;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
